@@ -3,7 +3,7 @@
     "target": "ES5",
     "module": "commonjs",
     "esModuleInterop": true,
-    "skiplibcheck": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   }
 }
