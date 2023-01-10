@@ -8,7 +8,7 @@ class ImportCategoryController {
     const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
     const { file } = req;
     await importCategoryUseCase.execute(file);
-    return res.send();
+    return res.status(201).send();
   }
 }
 
