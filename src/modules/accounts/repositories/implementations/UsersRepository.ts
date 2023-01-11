@@ -28,7 +28,8 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findById(id: string): Promise<User> {
-    throw new Error("Method not implemented.");
+    const user = await this.repository.findOne(id);
+    return user;
   }
 
 }
