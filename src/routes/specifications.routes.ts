@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { CreateSpecificationController } from '@modules/cars/useCases/createSpecification/CreateSpecificationController';
-import { SpecificationsRepository } from '@modules/cars/repositories/implementations/SpecificationRepository';
-import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
+import { SpecificationsRepository } from '@modules/cars/infra/typeorm/repositories/implementations/SpecificationRepository';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
 const specificationRoutes = Router();
 const createSpecificationController = new CreateSpecificationController();
