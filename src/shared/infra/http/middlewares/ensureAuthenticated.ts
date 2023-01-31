@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify, JwtPayload } from "jsonwebtoken";
-import { UsersRepository } from "../../../../modules/accounts/infra/typeorm/repositories/implementations/UsersRepository";
+import { UsersRepository } from "../../../../modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { AppError } from "../../../errors/AppError";
 
 
