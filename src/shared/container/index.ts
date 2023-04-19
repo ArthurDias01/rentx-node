@@ -5,8 +5,10 @@ import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecifica
 import { CategoriesRepository } from '@modules/cars/infra/typeorm/repositories/CategoriesRepository';
 import { SpecificationsRepository } from '@modules/cars/infra/typeorm/repositories/SpecificationRepository';
 import { CarsRepository } from '@modules/cars/infra/typeorm/repositories/CarsRepository';
+import { CarsImagesRepository } from '@modules/cars/infra/typeorm/repositories/CarsImagesRepository';
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ICarsImagesRepository } from '@modules/cars/repositories/ICarsImagesRepository';
 
 //ICategoryRepository
 container.registerSingleton<ICategoryRepository>(
@@ -30,4 +32,10 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ICarsRepository>(
   'CarsRepository',
   CarsRepository,
+);
+
+//ICarsImagesRepository
+container.registerSingleton<ICarsImagesRepository>(
+  'CarsImagesRepository',
+  CarsImagesRepository,
 );
