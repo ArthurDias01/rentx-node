@@ -57,6 +57,13 @@ class RentalsRepository implements IRentalsRepository {
       relations: ["car"]
     });
   }
+
+  async findOpenRentalByCar(car_id: string): Promise<Rental> {
+    const openByCar = await this.repository.findOne({
+      where: { car_id, end_date: null },
+    });
+    return openByCar;
+  }
 }
 
 export { RentalsRepository }
