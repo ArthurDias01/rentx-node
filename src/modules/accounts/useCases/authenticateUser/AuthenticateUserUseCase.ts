@@ -3,7 +3,7 @@ import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepositor
 import { compare } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { AppError } from "@shared/errors/AppError";
-import { IUserTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
+import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import auth from "@config/auth";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/Implementations/DayjsDateProvider";
 
@@ -27,8 +27,8 @@ class AuthenticateUserUseCase {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
-    @inject("UserTokensRepository")
-    private userTokensRepository: IUserTokensRepository,
+    @inject("UsersTokensRepository")
+    private userTokensRepository: IUsersTokensRepository,
     @inject("DayjsDateProvider")
     private dayjsDateProvider: DayjsDateProvider
   ) { }
@@ -41,6 +41,8 @@ class AuthenticateUserUseCase {
     if (!user) {
       throw new AppError("Email or password incorrect!", 401);
     }
+
+    const test = user.id;
 
     //senha está correta
     const passwordMatch = await compare(password, user.password);
@@ -64,7 +66,7 @@ class AuthenticateUserUseCase {
 
     await this.userTokensRepository.create({
       expires_date: refresh_token_expires_date,
-      refresh_token: refresh_token,
+      refresh_token,
       user_id: user.id,
     });
 
