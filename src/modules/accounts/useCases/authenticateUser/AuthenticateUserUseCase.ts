@@ -42,8 +42,6 @@ class AuthenticateUserUseCase {
       throw new AppError("Email or password incorrect!", 401);
     }
 
-    const test = user.id;
-
     //senha está correta
     const passwordMatch = await compare(password, user.password);
 
