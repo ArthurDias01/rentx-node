@@ -9,7 +9,6 @@ import auth from "@config/auth";
 export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
   const authToken = request.headers.authorization;
 
-  const userTokensRepository = new UsersTokensRepository();
 
   if (!authToken) {
     throw new AppError("Authentication token missing.", 401)
@@ -18,14 +17,8 @@ export async function ensureAuthenticated(request: Request, response: Response, 
   const [, token] = authToken.split(" ");
 
   try {
-    const { sub } = verify(token, auth.secret_refresh_token) as JwtPayload;
+    const { sub } = verify(token, auth.secret_token) as JwtPayload;
     const user_id = sub;
-
-    const user = await userTokensRepository.findByUserIdAndRefreshToken(user_id, token);
-
-    if (!user) {
-      throw new AppError("User does not exists!", 401)
-    }
 
     request.user = {
       id: user_id
