@@ -1,9 +1,8 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-@Entity()
+@Entity("cars_image")
 class CarImage {
-
   @PrimaryColumn()
   id: string;
 
@@ -23,4 +22,4 @@ class CarImage {
   }
 }
 
-export { CarImage }
+export { CarImage };

@@ -14,6 +14,8 @@ import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsReposi
 import { RentalsRepository } from '@modules/rentals/infra/typeorm/repositories/RentalsRepository';
 import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTokensRepository';
 import { UsersTokensRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
+import './providers'
+
 
 //ICategoryRepository
 container.registerSingleton<ICategoryRepository>(
