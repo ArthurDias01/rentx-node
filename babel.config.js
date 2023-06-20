@@ -3,11 +3,11 @@ module.exports = {
   plugins: [
     ["module-resolver", {
       alias: {
-        "@modules": ["./src/modules"],
-        "@config": ["./src/config"],
-        "@shared": ["./src/shared"],
-        "@errors": ["./src/shared/errors"],
-        "@utils": ["./src/utils"],
+        "@modules": "./src/modules",
+        "@config": "./src/config",
+        "@shared": "./src/shared",
+        "@errors": "./src/shared/errors",
+        "@utils": "./src/utils",
         "@middlewares": ["./src/shared/infra/http/middlewares"]
       }
     }],
