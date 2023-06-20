@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ignite
       POSTGRES_DB: rentx
     ports:
-      - 5432:5432
+      - 4343:5432
     volumes:
       - pgdata:/data/postgres
   app:
