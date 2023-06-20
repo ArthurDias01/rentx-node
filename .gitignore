@@ -2,6 +2,9 @@
 .vscode/
 node_modules/
 build/
-tmp/
+tmp/*
 temp/
 .env
+dist/
+coverage/
+!tmp/.gitkeep
