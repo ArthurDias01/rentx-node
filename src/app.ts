@@ -10,7 +10,7 @@ import "./shared/container"
 import createConnection from "./shared/infra/typeorm/index";
 import cors from 'cors';
 import { AppError } from '@shared/errors/AppError';
-import rateLimiter from '@middlewares/rateLimiter'
+import rateLimiter from '../src/shared/infra/http/middlewares/rateLimiter'
 
 createConnection();
 const app = express();
