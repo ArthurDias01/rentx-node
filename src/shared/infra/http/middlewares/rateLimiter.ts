@@ -1,41 +1,31 @@
 import { NextFunction, Request, Response } from "express";
 import { RateLimiterRedis } from "rate-limiter-flexible";
-import * as redis from "redis";
+import redis from "redis";
 
 import { AppError } from "@shared/errors/AppError";
-
-const redisClient = redis.createClient({
-  legacyMode: true,
-  socket: {
-    host: process.env.REDIS_HOST,
-    port: Number(process.env.REDIS_PORT),
-  },
-});
-(async () => await redisClient.connect())()
-
-const limiter = new RateLimiterRedis({
-  storeClient: redisClient,
-  keyPrefix: "rateLimiter",
-  points: 10,
-  duration: 1,
-});
 
 export default async function rateLimiter(
   request: Request,
   response: Response,
   next: NextFunction
 ): Promise<void> {
+  const redisClient = redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: Number(process.env.REDIS_PORT),
+    auth_pass: process.env.REDIS_PASSWORD || undefined,
+  });
+
+  const limiter = new RateLimiterRedis({
+    storeClient: redisClient,
+    keyPrefix: "rateLimiter",
+    points: 10,
+    duration: 1,
+  });
   try {
-    if (process.env.NODE_ENV === 'production') {
-      await limiter.consume(request.ip);
-    }
+    await limiter.consume(request.ip);
+
     return next();
-  } catch (e) {
-    if (e instanceof Error && e.message === "Not enough points") {
-      return next();
-    }
+  } catch (err) {
     throw new AppError("Too many requests", 429);
-  } finally {
-    await redisClient.disconnect();
   }
 }
