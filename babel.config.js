@@ -8,7 +8,7 @@ module.exports = {
         "@shared": "./src/shared",
         "@errors": "./src/shared/errors",
         "@utils": "./src/utils",
-        "@middlewares": ["./src/shared/infra/http/middlewares"]
+        "@middlewares": "./src/shared/infra/http/middlewares"
       }
     }],
     "babel-plugin-transform-typescript-metadata",
